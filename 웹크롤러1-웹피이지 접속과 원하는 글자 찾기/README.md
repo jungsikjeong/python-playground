@@ -85,3 +85,32 @@ print(soup.find_all('span', class_='tah'))
 # class로 찾으면 중복된 class가 있을 수 있어서 그걸 모두 찾아옴
 # 찾아온 자료를 적절하게 필터링해서 사용해야됌
 ```
+
+### 좀 더 간단하게 class와 id 가져오기
+
+> select : ccs 셀렉터 입력해서 원하는 HTML 찾기 가능
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+데이터 = requests.get('https://finance.naver.com/item/sise.nhn?code=005930')
+
+soup = BeautifulSoup(데이터.content , 'html.parser')
+
+# Before
+print(soup.find_all('strong',id="_nowVal"))
+
+# After
+soup.select('strong#_nowVal')
+
+# Before
+print(soup.find_all('strong',id="_nowVal"))
+
+# After
+soup.select('#_nowVal') # 혹은 class는 . 붙여서
+soup.select('.nowVal')
+
+# 참고로 아무것도없이 붙이면 태그명을 뜻함
+soup.select('strong')
+```
