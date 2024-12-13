@@ -11,7 +11,7 @@
 
 ```python
 import requests
-import josn
+import json
 
 data = requests.get('url')
 print(data.content)
