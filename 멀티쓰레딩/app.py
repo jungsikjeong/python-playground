@@ -34,7 +34,15 @@ def 함수(구멍):
 # multiprocessing.dummy까지붙이면 멀티쓰레딩으로 코드 실행가능
 from multiprocessing.dummy import Pool as ThreadPool
 
+
 pool = ThreadPool(4) #몇개 쓰레딩을 활성화할건지
-pool.map(작업시킬함수,작업시킬리스트) 
+result = pool.map(함수,url) 
 pool.close() # 작업그만하고
-pool.join() # 여태 작업한거 전부가져오라는 뜻 , close와 join은 세트로 쓰임
+pool.join() # 여태 작업한거 전부가져오라는 뜻 , close와 join은 세트로
+
+print(result) # 1초도 안걸려서 수집을 해줬음.
+
+
+# 정리
+# 실전에선 수집필요한 모든 URL을 리스트에 담고
+# 크롤러함수랑 함께 map에 집어넣음
