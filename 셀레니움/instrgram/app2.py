@@ -1,3 +1,5 @@
+# 인스타 로그인
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service 
 from selenium.webdriver.common.by import By
@@ -8,24 +10,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
 import time
 import os
-
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-# driver.get('https://instragram.com') # 이제 원하는 url적으면 파이썬으로 접속해줌
-
-# # 브라우저 유지
-# input("Press Enter to close the browser...")  # 엔터 키를 누를 때까지 브라우저 유지
-
-
-# # 해당 브라우저의 요소 가져오기
-# # driver.find_element_by_css_selector('class가 x1lliihq인것')
-# time.sleep(2)  # 페이지 로딩 대기
-
-# # 방법 1: 전체 클래스명 사용
-# e = driver.find_element(By.CSS_SELECTOR, '.x1lliihq.xlp1vlek.xryxfnj.xln2onr6.x1j0vk5s.xl8bv5gf.xl93l95w.xeugll.x1fj9vlw.xl3faq.be.xlvvkbs.xls928wv.xhkezso.xlwr53x.xlgplm7.xarty.x1943hcx.xllbuxe.xw391rp.xv31lw6.x5n08af.x2buid.xltu3fi.x3x7a5m.xl0wh9bi.xladske.xbvl0k.xl8hxmj')
-
-# # 또는 방법 2: XPath 사용 (텍스트로 찾기)
-# e = driver.find_element(By.XPATH, "//*[contains(text(), '앱을 다운로드하세요')]")
-# print(e.text)
 
 
 load_dotenv()
