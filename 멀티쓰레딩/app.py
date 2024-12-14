@@ -35,7 +35,7 @@ def 함수(구멍):
 from multiprocessing.dummy import Pool as ThreadPool
 
 
-pool = ThreadPool(4) #몇개 쓰레딩을 활성화할건지
+pool = ThreadPool(4) #몇개 쓰레드를 활성화할건지
 result = pool.map(함수,url) 
 pool.close() # 작업그만하고
 pool.join() # 여태 작업한거 전부가져오라는 뜻 , close와 join은 세트로
