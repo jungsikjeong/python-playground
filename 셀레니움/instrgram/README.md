@@ -18,6 +18,8 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install())) # �
 
 ## 파이썬 셀레니움을 통해서 인스타그램 해당 el찾기
 
+> "Selenium의 find_element 메서드의 모든 사용법을 예시와 함께 설명해줘"라고 클로드나 지피티한테 물어보자..
+
 ```python
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
