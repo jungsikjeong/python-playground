@@ -54,8 +54,16 @@ try:
   # 사진저장
   imgURL= driver.find_element(By.CSS_SELECTOR, "div._aagv img").get_attribute('src')    
   urllib.request.urlretrieve(imgURL,'1.jpg')
+  time.sleep(2)
+
   # 다음
+  driver.find_element(By.CSS_SELECTOR, 'button._abl-').click()
+  time.sleep(2)
+
   # 사진저장
+  imgURL = driver.find_elements(By.CSS_SELECTOR, "div._aagv img")[1].get_attribute('src')
+  urllib.request.urlretrieve(imgURL,'2.jpg')
+
   # 다음
   # ... 계속
   input("Press Enter to close the browser...")
@@ -68,3 +76,9 @@ finally:
     driver.quit() # 브라우저 종료
 
 
+# TODO:
+# 1. 반복문+함수 써서 이미지 가져오게하기
+# 2. 동영상만나면 에러나는데 해결해보기
+# 3. 한 게시물에 여러개의 이미지가있을 경우?
+# 4. 댓글 달기
+# 5. 수집이 너무 빠르면 차단당할 수 있으니 지연을 좀 시키자.
