@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options 
 from webdriver_manager.chrome import ChromeDriverManager
+import urllib.request
 
 from dotenv import load_dotenv
 import time
@@ -38,9 +39,7 @@ try:
   pw.send_keys(os.getenv('INSTAGRAM_PW')) #해당 요소에 인스타 비번입력
   btn.click()
 
-
-
-  time.sleep(3)
+  time.sleep(5)
   # 페이지이동
   # driver.get('url')을 다음처럼, 한번 더 쓰면 페이지 이동이됌
   driver.get('https://www.instagram.com/katarinabluu/')
@@ -50,9 +49,11 @@ try:
   # 수많은 class중에, 맨 첫번째꺼 하나만을 우선으로 가져와서 괜찮음
   driver.implicitly_wait(10) #아래 해당 요소가 안보이면 기다려라는 뜻
   imgEl =driver.find_element(By.CSS_SELECTOR, "div._aagu").click()    
-
+  
+  
   # 사진저장
-  driver.find_element(By.CSS_SELECTOR, "div._aagu").click()    
+  imgURL= driver.find_element(By.CSS_SELECTOR, "div._aagv img").get_attribute('src')    
+  urllib.request.urlretrieve(imgURL,'1.jpg')
   # 다음
   # 사진저장
   # 다음
