@@ -5,8 +5,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options 
 from webdriver_manager.chrome import ChromeDriverManager
 
+from dotenv import load_dotenv
 import time
-
+import os
 
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 # driver.get('https://instragram.com') # 이제 원하는 url적으면 파이썬으로 접속해줌
@@ -27,6 +28,7 @@ import time
 # print(e.text)
 
 
+load_dotenv()
 
 # 크롬 옵션 설정
 chrome_options = Options()
@@ -49,8 +51,8 @@ try:
   id = driver.find_element(By.XPATH, "//input[@aria-label='전화번호, 사용자 이름 또는 이메일']")
   pw = driver.find_element(By.XPATH, "//input[@aria-label='비밀번호']")
   btn = driver.find_element(By.XPATH, "//*[contains(text(), '로그인')]")
-  id.send_keys('아이디')  # 해당 요소에 인스타그램 아이디를 적어줌
-  pw.send_keys('비번') #해당 요소에 인스타 비번입력
+  id.send_keys(os.getenv('INSTAGRAM_ID'))  # 해당 요소에 인스타그램 아이디를 적어줌
+  pw.send_keys(os.getenv('INSTAGRAM_PW')) #해당 요소에 인스타 비번입력
   btn.click()
 except Exception as e:
     print("요소를 찾지 못했습니다:", e)
