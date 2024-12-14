@@ -46,9 +46,12 @@ driver.get('https://instagram.com')
 
 time.sleep(5)
 try:
-  e = driver.find_element(By.XPATH, "//input[@aria-label='전화번호, 사용자 이름 또는 이메일']")
-  e.send_keys('내아이디')  # 해당 요소에 인스타그램 아이디를 적어줌
-  e.send_keys(Keys.ENTER) # 키보드로 엔터를쳐줌
+  id = driver.find_element(By.XPATH, "//input[@aria-label='전화번호, 사용자 이름 또는 이메일']")
+  pw = driver.find_element(By.XPATH, "//input[@aria-label='비밀번호']")
+  btn = driver.find_element(By.XPATH, "//*[contains(text(), '로그인')]")
+  id.send_keys('아이디')  # 해당 요소에 인스타그램 아이디를 적어줌
+  pw.send_keys('비번') #해당 요소에 인스타 비번입력
+  btn.click()
 except Exception as e:
     print("요소를 찾지 못했습니다:", e)
 
