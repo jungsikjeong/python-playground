@@ -36,5 +36,5 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 pool = ThreadPool(4) #몇개 쓰레딩을 활성화할건지
 pool.map(작업시킬함수,작업시킬리스트) 
-pool.close() # 종료
-pool.join() # 결과 나올때까지 기다려달라는것
+pool.close() # 작업그만하고
+pool.join() # 여태 작업한거 전부가져오라는 뜻 , close와 join은 세트로 쓰임
