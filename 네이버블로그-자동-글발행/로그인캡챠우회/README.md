@@ -92,7 +92,7 @@ input('Press Enter to quit')
 
 - 네이버 m 접속
 - 크롬옵션추가
-- header도 추가가
+- header도 추가
 - 컨트롤+v로 아이디,비번 입력
 
 ```python
