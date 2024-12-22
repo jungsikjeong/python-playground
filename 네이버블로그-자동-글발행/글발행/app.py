@@ -43,64 +43,48 @@ driver.execute_cdp_cmd('Network.setExtraHTTPHeaders', {
 })
 
 # 네이버 로그인페이지 주소
-driver.get('https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/')
+driver.get('https://blog.editor.naver.com/editor?deviceType=mobile')
 
 time.sleep(2)
 
-# 아이디 복사붙여넣기
-pyperclip.copy(os.getenv('NAVER_ID')) # 복사
-e= driver.find_element(By.CSS_SELECTOR,'#id')
-e.send_keys(Keys.CONTROL, 'v') # ctrl+v 
+if driver.find_elements(By.CSS_SELECTOR, '#id'):
+    # 요소가 존재하면 실행할 코드
+    # 아이디 복사붙여넣기
+    pyperclip.copy(os.getenv('NAVER_ID')) # 복사
+    e= driver.find_element(By.CSS_SELECTOR,'#id')
+    e.send_keys(Keys.CONTROL, 'v') # ctrl+v 
 
-time.sleep(1)
+    time.sleep(1)
 
-# 비밀번호 복사 붙여넣기
-pyperclip.copy(os.getenv('NAVER_PW')) # 복사
-e= driver.find_element(By.CSS_SELECTOR,'#pw')
-e.send_keys(Keys.CONTROL, 'v') # ctrl+v 
+    # 비밀번호 복사 붙여넣기
+    pyperclip.copy(os.getenv('NAVER_PW')) # 복사
+    e= driver.find_element(By.CSS_SELECTOR,'#pw')
+    e.send_keys(Keys.CONTROL, 'v') # ctrl+v 
 
-time.sleep(1)
-# 엔터(로그인)
-e.send_keys(Keys.ENTER)
-
-time.sleep(2)
-
-# ( 네이버 글쓰기메뉴리스트 펼치기)
-e=driver.find_elements(By.CSS_SELECTOR,'ul.MyView-module__menu_list___UzzwA li.MyView-module__menu_item___zAxPt')[2].click()
-
-time.sleep(1)
-
-# 네이버 글쓰기 페이지로 이동
-e=driver.find_element(By.CSS_SELECTOR,'div.MyView-module__sub_right___NNT0B').click()
+    time.sleep(1)
+    # 엔터(로그인)
+    e.send_keys(Keys.ENTER)
+else:
+    # 요소가 없을 때 실행할 코드
+    print("로그인 필드를 찾을 수 없습니다")
 
 try:
     # 페이지 로드 대기
     WebDriverWait(driver, 10).until(
         lambda driver: driver.execute_script('return document.readyState') == 'complete'
     )
-
-    time.sleep(3)
     
-    # iframe이 존재하는지 먼저 확인
-    iframes = driver.find_elements(By.TAG_NAME, "iframe")
-    print(f"발견된 iframe 개수: {len(iframes)}")
+    e = driver.find_element(By.CSS_SELECTOR, '.se_component.se_documentTitle .se_textarea')
+    e.send_keys('안녕하세요~')
+
+    time.sleep(1)
+
+    e = driver.find_element(By.CSS_SELECTOR, '.se_component .se_editable')
+    e.send_keys('반갑습니다~')
+
+    time.sleep(1)
+    e=driver.find_element(By.CSS_SELECTOR, '.btn_applyPost').click()
     
-    for idx, iframe in enumerate(iframes):
-        try:
-            iframe_id = iframe.get_attribute('id')
-            print(f"iframe {idx}: id = {iframe_id}")
-        except:
-            print(f"iframe {idx}: id 속성을 가져올 수 없음")
-
-    # my-iframe으로 전환 시도
-    iframe_el = driver.find_element(By.ID, "my-iframe")
-    driver.switch_to.frame(iframe_el)
-
-    # iframe 안의 엘리먼트 찾기
-    e=driver.find_element(By.CSS_SELECTOR, "div#SE-49f313b240-968b-4fa6-92e9-e79eb7c4652b") 
-
-    # 텍스트 입력
-    e.send_keys('제목입니다')
 
 except Exception as e:
     print(f"오류 발생: {e}")
